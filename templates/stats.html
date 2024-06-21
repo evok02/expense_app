@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include('./partials/head.html') %}
+</head>
+<body>
+  {% include('./partials/header3.html') %}
+  <div class="container mt-4">
+    <h1 class="mb-4">Statistics</h1>
+    <form method="POST" action="{{ url_for('stats') }}">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.time_range.label(class="form-label") }}
+        {{ form.time_range(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </form>
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Total Amount Spent</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category_total in category_totals %}
+        <tr>
+          <td>{{ category_total[0] }}</td>
+          <td>{{ "${:,.2f}".format(category_total[1]) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJTY0V7moCLiOJ5boq1STmFQtU5iqwIHdxv7iTM3n5egG5DI+" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIyIhh9fJ8aOtRE6aZh1vYM7ztC+1o+LwlybUQGg" crossorigin="anonymous"></script>
+</body>
+</html>

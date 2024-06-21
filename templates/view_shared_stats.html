@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include './partials/head.html' %}
+</head>
+<body>
+    {% include './partials/header3.html' %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Shared Expense Stats</h1>
+        </div>
+    </section>
+    <div class="container">
+        {% for owner_id, stats in stats_by_user.items() %}
+            <h2>Shared by {{ user_dict[owner_id] }}</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stat in stats %}
+                    <tr>
+                        <td>{{ stat.category }}</td>
+                        <td>{{ "${:,.2f}".format(stat.amount) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

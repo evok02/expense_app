@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include('./partials/head.html') %}
+  </head>
+  <body>
+    {% include('./partials/header.html') %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2 class="mt-5">Register</h2>
+          <form method="POST" action="{{ url_for('register') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.username.label(class="form-label") }}
+              {{ form.username(class="form-control") }}
+            </div>
+            <div class="form-group">
+              {{ form.email.label(class="form-label") }}
+              {{ form.email(class="form-control") }}
+            </div>
+            <div class="form-group">
+              {{ form.password.label(class="form-label") }}
+              {{ form.password(class="form-control") }}
+            </div>
+            <div class="form-group">
+              {{ form.confirm_password.label(class="form-label") }}
+              {{ form.confirm_password(class="form-control") }}
+            </div>
+            <div class="form-group">
+              {{ form.submit(class="btn btn-primary") }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include('./partials/head.html') %}
+  </head>
+  <body>
+    {% include('./partials/header2.html') %}
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Expense Tracker</h1>
+        <p class="lead text-muted">{{ current_user.username }}</p>
+        <p>
+          <a href="{{ url_for('add') }}" class="btn btn-primary my-2">Add Expense</a>
+          <a href="{{ url_for('share_stats') }}" class="btn btn-secondary my-2">Share Stats</a>
+          <a href="{{ url_for('view_shared_stats') }}" class="btn btn-secondary my-2">View Shared Stats</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="container">
+      {% for month, expenses in expenses_by_month.items() %}
+      <h3>{{ month }}</h3>
+      <div class="row">
+        {% for expense in expenses %}
+        <div class="col-md-4">
+          <div class="card border-success mb-3">
+            <div class="card-header bg-success text-white">{{ expense.category }}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ expense.title }}</h5>
+              <p class="card-text">{{ "${:,.2f}".format(expense.amount) }}</p>
+              <p class="card-text"><small class="text-muted">{{ expense.date.strftime('%Y-%m-%d') }}</small></p>
+              <a href="{{ url_for('update', expense_id=expense.id) }}" class="btn btn-primary btn-sm">Edit</a>
+              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete-{{ expense.id }}">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="delete-{{ expense.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ expense.id }}" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel-{{ expense.id }}">Delete Expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete this expense?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="{{ url_for('delete', expense_id=expense.id) }}" method="POST">
+                  <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJTY0V7moCLiOJ5boq1STmFQtU5iqwIHdxv7iTM3n5egG5DI+" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIyIhh9fJ8aOtRE6aZh1vYM7ztC+1o+LwlybUQGg" crossorigin="anonymous"></script>
+  </body>
+</html>

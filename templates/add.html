@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include './partials/head.html' %}
+</head>
+<body>
+    {% include './partials/header.html' %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Add new expense</h1>
+        </div>
+    </section>
+    <div class="container content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {{ form.title(class="form-control form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.category.label(class="form-control-label") }}
+                    {{ form.category(class="form-control form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.amount.label(class="form-control-label") }}
+                    {{ form.amount(class="form-control form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.date.label(class="form-control-label") }}
+                    {{ form.date(class="form-control form-control") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>  
+</body>
+</html>
