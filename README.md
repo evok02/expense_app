@@ -10,14 +10,13 @@ This project is a web-based application designed to help users manage and share 
 - Expense logging and management
 - Viewing expense statistics by category
 - Sharing expense statistics with other users
-- Real-time search for users
 
 ## Installation
 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/expense-sharing-app.git
+    git clone https://github.com/evok02/expense_app.git
     ```
 
 2. Create a virtual environment and activate it:
