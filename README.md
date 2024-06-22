@@ -32,13 +32,6 @@ This project is a web-based application designed to help users manage and share 
     pip install -r requirements.txt
     ```
 
-4. Initialize the database:
-
-    ```bash
-    flask db init
-    flask db migrate -m "Initial migration."
-    flask db upgrade
-    ```
 
 ## Running the Application
 
