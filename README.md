@@ -31,8 +31,16 @@ This project is a web-based application designed to help users manage and share 
     ```bash
     pip install -r requirements.txt
     ```
+4. Initialize the Databease:
 
+    Open a Python shell and run the following commands to create the database tables:
 
+   ```bash
+    from app import app
+    from app import db
+    with app.app_context():
+        db.create_all()
+   
 ## Running the Application
 
 To run the application, use the Flask development server:
