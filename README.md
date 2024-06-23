@@ -47,5 +47,6 @@ To run the application, use the Flask development server:
 
 ```bash
 flask run
+```
 
 The application will be accessible at http://127.0.0.1:5000/.
